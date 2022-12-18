@@ -1,0 +1,27 @@
+.search_container{
+    width:40%;
+    padding:10px;
+    margin:20px auto; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: white;
+    border: 2px solid #eee;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    border-radius:10px;
+    gap:10px;
+    
+}
+
+.search_input{
+    /* width:80%; */
+    font-size: large;
+    outline:none;
+    border:0;
+    
+}
+
+.search_img{
+    width: 30px;
+    height: 30px;
+}

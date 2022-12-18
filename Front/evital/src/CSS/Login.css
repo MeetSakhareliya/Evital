@@ -1,0 +1,18 @@
+.login_form{
+    background-color: white;
+    width:40%;
+    min-width: 400px;
+    border-radius: 12px;
+    margin: auto;
+    margin-top:10%;
+}
+
+.input_field{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+
+/* .login_container{
+    display: flex;
+} */
