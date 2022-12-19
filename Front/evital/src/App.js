@@ -3,6 +3,7 @@ import Header from './Component/Header';
 import Home from './Component/Home';
 import Login from './Component/Login';
 import Cart from './Component/Cart';
+import Order from './Component/Order';
 import Aboutus from './Component/Aboutus';
 import NotFound from './Component/NotFound';
 import Register from './Component/Register';
@@ -54,7 +55,7 @@ const App=() =>{
             {["/home","/", "/products"].map((path, index) => 
                 <Route path={path} element={<Home/>} key={index} />
             )}
-            {/* <Route path="/" element={<Home/>}></Route> */}
+            <Route path="/order" element={<Order/>}></Route>
             {/* <Route path="/aboutus" element={<Aboutus/>}></Route> */}
             <Route path="/cart" element={<Cart/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
@@ -63,8 +64,6 @@ const App=() =>{
                     
         </Routes>
       </div>
-    
-    
   );
 }
 

@@ -12,6 +12,11 @@
     width:55%;
 }
 
+.order_container{
+    width:80%;
+    margin:auto;
+}
+
 .sidebar{
     width:35%;
     /* height:auto; */

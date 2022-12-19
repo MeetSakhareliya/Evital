@@ -19,6 +19,16 @@ const Register = () => {
         if(isAuthenticated) navigate("/",{replace:true});
     },[navigate,isAuthenticated]);
 
+    function validateEmail(email){
+        let pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+        return email.match(pattern);
+    }
+
+    function validatePassword(password){
+        let pattern = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        return password.match(pattern);
+    }
+
     const submitHandler=async(e)=>{
         e.preventDefault();
         setErr("");
@@ -27,19 +37,25 @@ const Register = () => {
 
         
         if(email.trim() && password.trim()){
-            const res=await axios.post('http://localhost:8000/auth/register',{
-                data:{
-                    email:email,
-                    password:password
+            if(!validateEmail(email)){
+                setErr("Email is not valid");
+            }else if(!validatePassword(password)){
+                setErr("Password should have min 8 letter password, with at least a symbol, upper and lower case letters and a number");
+            }else{
+                const res=await axios.post('http://localhost:8000/auth/register',{
+                    data:{
+                        email:email,
+                        password:password
+                    }
+                });
+                console.log(res);
+                if(res.data.err){
+                    if(res.data.errno==1062)
+                    setErr("Email is already in use");
+                }else {
+                    dispatch(setAuthenticated([true,email]));
+                    // setAuthenticated(true);
                 }
-            });
-            console.log(res);
-            if(res.data.err){
-                if(res.data.errno==1062)
-                setErr("Email is already in use");
-            }else {
-                dispatch(setAuthenticated([true,email]));
-                // setAuthenticated(true);
             }
         }
         else{

@@ -74,3 +74,33 @@ exports.addItem=(req,res,next)=>{
         }
     })
 };
+
+exports.getOrderProducts=(req,res,next)=>{
+    
+    const query=`SELECT * FROM evital.order inner join user on order.email=user.email inner join product on product.id=order.productId where order.email="${req.params.user}"`;
+
+    pool.query(query,(err,result)=>{
+        if(err){
+            console.log(err);
+            res.json({err:err.sqlMessage,errno:err.errno});
+        }else{
+            console.log(result);
+            result=result.map((item)=>{
+                return {email:item.email,
+                        quantity:item.quantity,
+                        name:item.name,
+                        id:item.id,
+                        price:item.price,
+                        image:item.image,
+                        date:item.expecteddate,
+                        status:item.orderStatus
+                    };
+            })
+            res.status(201).json({order_items:result});
+        }
+    });
+}
+
+
+
+

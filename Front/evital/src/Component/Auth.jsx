@@ -8,7 +8,7 @@ const Auth=(props)=>{
     const navigate=useNavigate();
 
     useEffect(() => {
-        // if(!isAuthenticated) navigate("/",{replace:true});
+        if(!isAuthenticated) navigate("/",{replace:true});
     }, [isAuthenticated])
 
   
